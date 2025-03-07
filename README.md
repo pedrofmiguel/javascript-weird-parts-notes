@@ -22,7 +22,6 @@ function outer() {
     let b = 20;
     console.log(a); // 10 (accesses 'a' from outer scope)
   }
-
   inner();
 }
 
@@ -33,9 +32,10 @@ outer();
 
 outer() creates a Lexical Environment that stores a = 10.
 Inside outer(), inner() is defined. It remembers the outer environment.
+
 When inner() runs, it:
-Looks for a inside its own scope (not found).
-Goes to the outer lexical environment (finds a = 10).
+1 - Looks for a inside its own scope (not found).
+2 - Goes to the outer lexical environment (finds a = 10).
 JavaScript resolves variables by climbing up the lexical scope chain.
 
 
@@ -94,4 +94,50 @@ In the case of the browsers is the `window` object.
 
 
 ## 11. The Execution Context - Creation and Hoisting
+
+**Hoisting** 
+
+```js
+var a = 'Hello World'
+
+function b() {
+  console.log('Called b');
+}
+
+b();
+console.log(a);
+
+// this will print
+// Called b
+// Hello world
+```
+
+```js
+b();
+console.log(a)
+
+var a = 'Hello World'
+
+function b() {
+  console.log('Called b');
+}
+
+
+// this will print
+// Hello world
+// undefined
+
+```
+
+Hoisting will see that the variable is declared and create "space" for it, but will not have the declared variables that comes bellow - the `Hello World`.
+
+If we remove the `var a = 'Hello World'` line, it will trigger an uncaught error because the variable is not declared.
+
+### How the execution context is created (CREATION PHASE)
+
+![alt text](Images/hoisting.png.png)
+
+
+
+
 
