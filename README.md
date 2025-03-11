@@ -1,6 +1,6 @@
 # Javascript Understanding the Weird Parts Notes
 
-## 7. CONCEPTUAL ASIDE: SYNTAX PARSERS, EXECUTION CONTEXT AND LEXICAL ENVIRONMENTS
+## 7. Conceptual Aside: Syntax Parsers, Execution Contexts, Lexical Environments
 
 ### 7.1 SYNTAX PARSER
 A program that reads your code and determines what it does and if its grammar is valid.
@@ -136,6 +136,79 @@ If we remove the `var a = 'Hello World'` line, it will trigger an uncaught error
 ### How the execution context is created (CREATION PHASE)
 
 ![alt text](Images/hoisting.png.png)
+
+## 12. Conceptual Aside: Javascript and 'undefined'
+Undefined is a special value. It's the value that the variables will receive in the creation fase, the first fase of creating an executing context.
+
+## 13. The execution Context - Code Execution
+
+Consider the following code:
+
+```js
+function b() {
+  console.log('Called b');
+}
+
+b();
+console.log(a)
+
+var a = 'Hello World';
+
+console.log(a);
+```
+
+This will log: 
+
+```
+Called b!
+undefined
+'Hello World'
+```
+
+## 14. Conceptual Aside: Single Threaded, Synchronous Execution
+Javascript is Single Threaded and Synchronous.
+
+Single Threaded: One command at a time.
+
+Synchronous: One at a Time (and in order).
+
+## 15. Function Invocation and the Execution Stack
+
+Invocation: Running a Function. In javascript it's the `()`.
+
+```js
+
+function b() {
+
+}
+
+function a() {
+  b();
+}
+
+a();
+```
+The execution context is created:
+
+After that it sets up the memory for each function and executes line by line.
+
+It will create an execution context for `a()`.
+But since we have another function invoked `b()` it will create another execution context for that function.
+Everytime a function is invoked it will create a new one.
+
+And when the function b is ran, it's popped off the execution context and will go for the next one, in this case function a.
+
+## 16. Functions, Context and Variable Environments
+
+__Variable Environment__ - Where variables live.
+
+### Code example:
+
+
+
+
+
+
 
 
 
