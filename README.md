@@ -204,6 +204,63 @@ __Variable Environment__ - Where variables live.
 
 ### Code example:
 
+```js
+function b() {
+  var myVar;
+  console.log(myVar);
+}
+
+function a() {
+  var myVar = 2;
+  console.log(myVar);
+  b();
+}
+
+var myVar = 1;
+console.log(myVar);
+a();
+```
+
+What happens? (each step will override the prior because they are execution fases).
+
+1. Global Execution Context - myVar = 1
+2. a() Execution Context - myVar = 2
+3. b() Execution Context - myVar = undefined
+
+If we had console logs inside each function you would have a log like this:
+
+```js
+1
+2
+undefined
+```
+
+## 17. The Scope Chain
+What would this log print? 
+
+```js
+function b() {
+  console.log(myVar);
+}
+
+function a() {
+  var myVar = 2;
+  b();
+}
+var myVar = 1;
+a();
+
+```
+
+This would log: __1__
+
+Because if the javascript can't find a reference to a variable in the execution context, it will look for the variable inside the outter context (global execution context).
+
+
+
+
+
+
 
 
 
